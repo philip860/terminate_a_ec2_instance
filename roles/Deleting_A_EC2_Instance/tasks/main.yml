@@ -10,11 +10,11 @@
 - name: Include Configure_EC2_On_AWS  yml File
   ansible.builtin.include_tasks:
     file: Configure_EC2_On_AWS.yml
-  when: "specific_ec2_instance_detected_var  == 'true'"
+  when: "specific_ec2_instance_detected_var  == true"
 
 
 
 - name: "{{ ec2_instance_name }} Instance Not Detected In specific_ec2_instance_detected_var"
   ansible.builtin.debug:
     msg: "{{ specific_ec2_instance_detected_var }}"
-  when: "specific_ec2_instance_detected_var  == 'false'"
+  when: "specific_ec2_instance_detected_var  == false"
