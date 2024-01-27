@@ -10,6 +10,7 @@
 
 
 - name: Set specific_ec2_instance_detected_var Variable To True
+  no_log: true
   set_fact:
     specific_ec2_instance_detected_var: "true"
   loop: "{{ ec2_instance_list_output.instances }}"
