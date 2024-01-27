@@ -31,4 +31,4 @@
 - name: Print ec2_instance_list_output
   ansible.builtin.debug:
     msg: "{{ item.tags }}"
-  loop: "{{ ec2_instance_list_output | list }}"
+  loop: "{{ ec2_instance_list_output.instances }}"
