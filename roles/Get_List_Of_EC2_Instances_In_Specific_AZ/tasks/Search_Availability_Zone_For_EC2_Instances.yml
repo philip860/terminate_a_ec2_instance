@@ -8,6 +8,16 @@
   register: ec2_instance_list_output
 
 
+
+- name: Set specific_ec2_instance_detected_var To True
+  set_fact:
+    specific_ec2_instance_detected_var: "true"
+  loop: "{{ ec2_instance_list_output }}"
+  when: "ec2_instance_name in item.tags[0]"
+
+
+
+
 - name: Print ec2_instance_list_output
   ansible.builtin.debug:
     msg: "{{ ec2_instance_list_output }}"
