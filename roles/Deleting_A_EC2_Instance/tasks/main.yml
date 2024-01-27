@@ -1,5 +1,9 @@
 ---
+- name: Update Current System Facts
+  ansible.builtin.setup:
+
 
 - name: Include Configure_EC2_On_AWS  yml File
   ansible.builtin.include_tasks:
     file: Configure_EC2_On_AWS.yml
+  when: "'true' in specific_ec2_instance_detected_var"
