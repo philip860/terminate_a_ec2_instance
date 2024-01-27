@@ -1,0 +1,5 @@
+---
+
+- name: Include Search_Availability_Zone_For_EC2_Instances.yml File
+  ansible.builtin.include_tasks:
+    file: Search_Availability_Zone_For_EC2_Instances.yml
