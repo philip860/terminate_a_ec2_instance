@@ -1,7 +1,7 @@
     
     
 - name: "Get List Of EC2 Instances In {{ aws_az }}"
-  amazon.aws.ec2_instance_infot:
+  amazon.aws.ec2_instance_info:
     aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY_ID') }}"
     aws_secret_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY') }}"
     region: "{{ aws_az }}"
