@@ -25,7 +25,7 @@
 
 - name: Print ec2_instance_list_output debug
   ansible.builtin.debug:
-    msg: "{{ ec2_instance_list_output.instances }}"
+    msg: "{{ ec2_instance_list_output.instances.tags }}"
 
 
  
