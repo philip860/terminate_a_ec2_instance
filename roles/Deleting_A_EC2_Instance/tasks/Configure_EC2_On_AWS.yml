@@ -1,0 +1,119 @@
+    
+      
+
+    
+    - name: Create a new VPC 
+
+      amazon.aws.ec2_vpc_net:
+
+        name: "Ansible-Test"
+
+        cidr_block: "{{ cidr_block }}"
+
+        aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY_ID')  }}"
+
+        aws_secret_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY')  }}"
+
+        region: "{{ region }}"
+
+      register: vpc
+
+
+    - name: Create a new Subnet
+
+      amazon.aws.ec2_vpc_subnet:
+
+        aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY_ID')  }}"
+
+        aws_secret_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY')  }}"
+
+        cidr: "{{ cidr }}"
+
+        region: "{{ region }}"
+
+        vpc_id: "{{ vpc.vpc.id }}"
+
+      register: subnet
+    - name: Make File/Directory
+      ansible.builtin.shell: "mkdir /tmp; touch /tmp/my_aws.pub"
+      args:
+        executable: /bin/bash
+
+    - name: Generate SSH Public Key On localhost
+      ansible.builtin.shell: "echo {{ ssh_pub_key_content }} > /tmp/my_aws.pub"
+      args:
+        executable: /bin/bash
+
+
+
+    - name: Amazon EC2 | Create Key Pair      # Create key pair for ssh
+      amazon.aws.ec2_key:
+        name: "{{ key_name }}"
+        region: "{{ region }}"
+        aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY_ID')  }}"  # From vault as defined
+        aws_secret_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY')  }}"  # From vault as defined
+        key_material: "{{ item }}"
+      with_file: /tmp/my_aws.pub
+    
+    
+
+    - name: Create a Security Group  
+
+      amazon.aws.ec2_security_group:
+
+        name: "Ansible-Test-Security-Group"
+
+        description: "Ansible-Testing"
+
+        aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY_ID')  }}"
+
+        aws_secret_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY')  }}"
+
+        vpc_id: "{{ vpc.vpc.id }}"
+
+        region: "{{ region }}"
+
+        rules:
+
+          - proto: tcp
+
+            ports:
+
+            - 80
+
+            cidr_ip: 0.0.0.0/0
+
+            rule_desc: "allow all on port 80"
+
+      register: security_group
+   
+
+    - name: Launch an EC2 Instance
+
+      amazon.aws.ec2_instance:
+
+        name: "Test-Ansible"
+
+        key_name: "{{ key_name }}"
+
+        aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY_ID')  }}"
+
+        aws_secret_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY')  }}"
+
+        vpc_subnet_id: "{{ subnet.subnet.id }}"
+
+        instance_type: "{{ instance_type }}"
+
+        security_group: "{{ security_group.group_id  }}"
+
+        count: 1
+
+        wait: yes
+
+        aws_region: "us-east-1"
+
+        network:
+
+          assign_public_ip: true
+
+        image_id: "{{ ami }}"

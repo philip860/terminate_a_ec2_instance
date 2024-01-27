@@ -1,0 +1,11 @@
+- name: Print key name variable
+  ansible.builtin.debug:
+    msg: "{{ key_name }}"
+
+- name: Print  ec2_access_key variable
+  ansible.builtin.debug:
+    msg: "{{ ec2_access_key }}"
+
+- name: Print  ec2_secret_key variable
+  ansible.builtin.debug:
+    msg: "{{ ec2_secret_key }}"

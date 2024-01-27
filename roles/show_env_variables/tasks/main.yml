@@ -1,0 +1,5 @@
+---
+
+- name: Include print_env_variables_from_awx_console.yml  yml File
+  ansible.builtin.include_tasks:
+    file: print_env_variables_from_awx_console.yml

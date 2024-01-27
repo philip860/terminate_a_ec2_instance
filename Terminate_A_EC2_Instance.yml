@@ -1,0 +1,33 @@
+---
+- name: "Terminate {{ ec2_instance_name }} EC2 Instance In AWS"
+  hosts: localhost
+  gather_facts: true
+  become: false
+  vars:
+    
+    instance_type: t3.micro
+
+    ami: ami-023c11a32b0207432
+
+    key_name: ansible-demo
+
+    vpc_name: ansible-vpc-test
+
+    cidr_block: "10.10.0.0/16"
+
+    cidr: "10.10.0.0/24"
+
+    region: us-east-1
+
+    ssh_pub_key_content: "{{ ssh_public_key_var }}"    # Key used for SSH
+
+    #These are environment vars from Ansible that reference the AWX creds stored in the GUI
+    #https://docs.ansible.com/automation-controller/4.1.0/html/userguide/credentials.html
+    #aws_access_key:  "{{ lookup('env', 'AWS_ACCESS_KEY_ID')  }}"
+    #aws_secret_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY')  }}"
+   
+  roles:
+  
+    - Deleting_A_EC2_Instance
+    #- show_env_variables
+
