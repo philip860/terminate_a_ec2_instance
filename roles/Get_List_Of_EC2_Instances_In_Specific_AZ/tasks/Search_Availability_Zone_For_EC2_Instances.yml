@@ -23,7 +23,9 @@
     msg: "{{ ec2_instance_list_output }}"
 
 
-    
+- name: Print ec2_instance_list_output debug
+  ansible.builtin.debug:
+    msg: "{{ ec2_instance_list_output[0] }}"
 
 
  
