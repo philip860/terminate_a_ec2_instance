@@ -9,9 +9,9 @@
 
 
 
-- name: Set specific_ec2_instance_detected_var Variable
+- name: Set specific_ec2_instance_detected_var Variable To True
   set_fact:
-    specific_ec2_instance_detected_var: "{{ item.tags.Name }}"
+    specific_ec2_instance_detected_var: "true"
   loop: "{{ ec2_instance_list_output.instances }}"
   when: "ec2_instance_name in item.tags.Name"
 
