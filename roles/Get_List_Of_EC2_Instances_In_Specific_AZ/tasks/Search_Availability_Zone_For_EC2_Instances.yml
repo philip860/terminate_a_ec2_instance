@@ -17,6 +17,12 @@
   when: "ec2_instance_name in item.tags.Name"
 
 
+- name: Set specific_ec2_instance_detected_var Variable To False
+  no_log: true
+  set_fact:
+    specific_ec2_instance_detected_var: "false"
+  loop: "{{ ec2_instance_list_output.instances }}"
+  when: "ec2_instance_name not in item.tags.Name"
 
 
 # - name: Print ec2_instance_list_output
