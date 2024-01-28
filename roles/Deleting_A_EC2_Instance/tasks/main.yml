@@ -17,5 +17,5 @@
 
 - name: "{{ ec2_instance_name }} Instance Not Detected In specific_ec2_instance_detected_var"
   ansible.builtin.debug:
-    msg: "{{ specific_ec2_instance_detected_var }}"
+    msg: "{{ specific_ec2_instance_detected_var  | default(omit) }}"
   when: "specific_ec2_instance_detected_var is not defined"
