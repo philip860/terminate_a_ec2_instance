@@ -9,5 +9,5 @@
   roles:
   
     - Get_List_Of_EC2_Instances_In_Specific_AZ
-    #- Deleting_A_EC2_Instance
+    - Deleting_A_EC2_Instance
 
