@@ -26,17 +26,7 @@
 
 
 
-
-# - name: Print ec2_instance_list_output
-#   ansible.builtin.debug:
-#     msg: "{{ ec2_instance_list_output }}"
-
-
-# - name: Print ec2_instance_list_output debug
-#   ansible.builtin.debug:
-#     msg: "{{ ec2_instance_list_output.instances[0].tags }}"
-
-
+#Here we are giving an update on the current ec2 instance if detected 
 - name: Print specific_ec2_instance_detected_var
   ansible.builtin.debug:
     msg: "{{ specific_ec2_instance_detected_var }}"
