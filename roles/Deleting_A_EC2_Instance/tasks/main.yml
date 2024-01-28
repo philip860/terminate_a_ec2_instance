@@ -7,9 +7,9 @@
     specific_ec2_instance_detected_var: "{{ hostvars['localhost']['specific_ec2_instance_detected_var'] }}"
 
 
-- name: Include Configure_EC2_On_AWS  yml File
+- name: Include terminate_EC2_On_AWS.yml File
   ansible.builtin.include_tasks:
-    file: Configure_EC2_On_AWS.yml
+    file: terminate_EC2_On_AWS.yml
   when: "specific_ec2_instance_detected_var  == true"
 
 
