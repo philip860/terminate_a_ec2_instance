@@ -17,12 +17,14 @@
   when: "ec2_instance_name in item.tags.Name"
 
 
-- name: Set specific_ec2_instance_detected_var Variable To False
+- name: Set specific_ec2_instance_instance_id_detected_var Variable 
   no_log: true
   set_fact:
-    specific_ec2_instance_detected_var: "false"
+    specific_ec2_instance_instance_id_detected_var: "{{ item.instance_id}}"
   loop: "{{ ec2_instance_list_output.instances }}"
-  when: "ec2_instance_name not in item.tags.Name"
+  when: "ec2_instance_name in item.tags.Name"
+
+
 
 
 # - name: Print ec2_instance_list_output
@@ -38,3 +40,8 @@
 - name: Print specific_ec2_instance_detected_var
   ansible.builtin.debug:
     msg: "{{ specific_ec2_instance_detected_var }}"
+
+
+- name: Print specific_ec2_instance_instance_id_detected_var
+  ansible.builtin.debug:
+    msg: "{{ specific_ec2_instance_instance_id_detected_va }}"
