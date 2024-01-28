@@ -35,5 +35,5 @@
 
 - name: Print specific_ec2_instance_instance_id_detected_var
   ansible.builtin.debug:
-    msg: "{{ specific_ec2_instance_instance_id_detected_var | default('EC2 Instance Not Found!')}}"
+    msg: "{{ specific_ec2_instance_instance_id_detected_var | default('EC2 Instance ID Not Found!')}}"
   when: "specific_ec2_instance_detected_var is not defined"
