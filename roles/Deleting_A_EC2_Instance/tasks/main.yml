@@ -5,6 +5,7 @@
 - name: Set specific_ec2_instance_detected_var Again
   set_fact:
     specific_ec2_instance_detected_var: "{{ hostvars['localhost']['specific_ec2_instance_detected_var'] }}"
+  when: "hostvars['localhost']['specific_ec2_instance_detected_var'] is defined"
 
 
 - name: Include terminate_EC2_Instance_On_AWS.yml File
