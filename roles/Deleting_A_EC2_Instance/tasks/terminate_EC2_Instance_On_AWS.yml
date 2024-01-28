@@ -9,7 +9,7 @@
     specific_ec2_instance_instance_id_detected_var: "{{ hostvars['localhost']['specific_ec2_instance_instance_id_detected_var'] }}"
 
 
-- name: Terminate instances that were previously launched
+- name: "Terminate {{ ec2_instance_name }} EC2 instance "
   ec2:
     state: 'absent'
     instance_ids: '{{ specific_ec2_instance_instance_id_detected_var }}'
