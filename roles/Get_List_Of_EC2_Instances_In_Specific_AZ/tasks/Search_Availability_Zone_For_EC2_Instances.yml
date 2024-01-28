@@ -45,3 +45,4 @@
 - name: Print specific_ec2_instance_instance_id_detected_var
   ansible.builtin.debug:
     msg: "{{ specific_ec2_instance_instance_id_detected_var }}"
+  when: "ec2_instance_name in item.tags.Name"
