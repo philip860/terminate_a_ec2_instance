@@ -2,3 +2,14 @@
 - name: Deleting Instance
   ansible.builtin.debug:
     msg: "delete"
+
+
+- name: Set ec2_instance_list_output.instances_list
+  set_fact:
+    ec2_instance_list_output.instances_list: "{{ hostvars['localhost']['ec2_instance_list_output.instances'] }}"
+
+
+- name: Terminate instances that were previously launched
+  ec2:
+    state: 'absent'
+    instance_ids: '{{ ec2.instance_ids }}'
