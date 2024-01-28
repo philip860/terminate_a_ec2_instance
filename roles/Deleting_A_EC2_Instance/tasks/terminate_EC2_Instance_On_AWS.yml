@@ -9,7 +9,7 @@
     specific_ec2_instance_instance_id_detected_var: "{{ hostvars['localhost']['specific_ec2_instance_instance_id_detected_var'] }}"
 
 
-- name: "Terminate {{ ec2_instance_name }} EC2 instance "
+- name: "Terminate {{ ec2_instance_name }} EC2 instance"
   amazon.aws.ec2_instance:
     region: "{{ region }}"
     state: 'absent'
