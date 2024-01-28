@@ -29,11 +29,11 @@
 #Here we are giving an update on the current ec2 instance if detected 
 - name: Print specific_ec2_instance_detected_var
   ansible.builtin.debug:
-    msg: "{{ specific_ec2_instance_detected_var | default(omit) }}"
+    msg: "{{ specific_ec2_instance_detected_var }}"
   when: "specific_ec2_instance_detected_var is defined"
 
 
 - name: Print specific_ec2_instance_instance_id_detected_var
   ansible.builtin.debug:
-    msg: "{{ specific_ec2_instance_instance_id_detected_var | default(omit)}}"
+    msg: "{{ specific_ec2_instance_instance_id_detected_var | default('EC2 Instance Not Found!')}}"
   when: "specific_ec2_instance_detected_var is not defined"
