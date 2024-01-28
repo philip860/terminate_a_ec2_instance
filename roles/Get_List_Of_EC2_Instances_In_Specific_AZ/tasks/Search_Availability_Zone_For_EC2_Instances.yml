@@ -40,7 +40,7 @@
 - name: Print specific_ec2_instance_detected_var
   ansible.builtin.debug:
     msg: "{{ specific_ec2_instance_detected_var }}"
-  when: "specific_ec2_instance_detected_var  == true"
+  when: "specific_ec2_instance_detected_var is defined"
 
 
 - name: Print specific_ec2_instance_instance_id_detected_var
