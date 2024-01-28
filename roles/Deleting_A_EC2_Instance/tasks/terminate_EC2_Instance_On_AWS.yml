@@ -11,6 +11,7 @@
 
 - name: "Terminate {{ ec2_instance_name }} EC2 instance "
   amazon.aws.ec2_instance:
+    region: "{{ region }}"
     state: 'absent'
     instance_ids: "{{ specific_ec2_instance_instance_id_detected_var }}"
 
