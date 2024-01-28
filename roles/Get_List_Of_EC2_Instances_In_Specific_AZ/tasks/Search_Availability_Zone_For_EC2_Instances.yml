@@ -44,4 +44,4 @@
 
 - name: Print specific_ec2_instance_instance_id_detected_var
   ansible.builtin.debug:
-    msg: "{{ specific_ec2_instance_instance_id_detected_va }}"
+    msg: "{{ specific_ec2_instance_instance_id_detected_var }}"
